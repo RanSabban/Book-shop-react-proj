@@ -1,3 +1,5 @@
+import { LongTxt } from "../cmps/LongTxt.jsx"
+
 export function BookDetails({book,onGoBack}){
     function getPageCount(){
         if (book.pageCount > 500) return 'Serious Reading'
@@ -16,13 +18,21 @@ export function BookDetails({book,onGoBack}){
         else return ''
     }
 
+    function getOnSale(){
+        return <div className="on-sale-container">
+            Last Price: <span className="deleted-price">{book.listPrice.amount+book.listPrice.currencyCode}</span>
+            <span> New Price: {Math.trunc(book.listPrice.amount*.9)+book.listPrice.currencyCode}</span>
+            <img src={"./assets/img/onsale-sign.svg"}/>
+            </div>
+    }
+
     return <section className="book-details">
         <button onClick={onGoBack}>Back</button>
         <h1>Book Title: {book.title}</h1>
         <h3>{book.subtitle}</h3>
-        <h5 className={getPriceClass()}>Book Price: {book.listPrice.amount+book.listPrice.currencyCode}</h5>
+        <h5 className={getPriceClass()}>{book.listPrice.isOnSale ? getOnSale() : book.listPrice.amount+book.listPrice.currencyCode}</h5>
         <h2>Description:</h2>
-        <p>{book.description}</p>
+        <LongTxt txt={book.description} length={20} />
         <h2>Authors: {book.authors.map(author => author + ' ')}</h2>
         <h2>Book categories: {book.categories.map(category => category + ' ')}</h2>
         <h2>LNG: {book.language}</h2>

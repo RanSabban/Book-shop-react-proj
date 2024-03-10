@@ -5,3 +5,12 @@
 .price-red{
     color: red;
 }
+
+.deleted-price{
+    text-decoration: line-through;
+}
+
+.on-sale-container img { 
+    display: inline;
+    width: 50px;
+}
