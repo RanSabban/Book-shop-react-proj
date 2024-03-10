@@ -12,7 +12,7 @@ export function BookEdit({addBook}){
     return <section className="book-edit">
         <button className="book-edit" onClick={()=>setModalOpen(prevIsModalOpen => !prevIsModalOpen)}>Add Book</button>
         {
-            isModalOpen && <AddBookModal onSubmit={onSubmit} />
+            isModalOpen && <AddBookModal onSubmit={onSubmit} setModalOpen={setModalOpen} />
         }
     </section>
 }

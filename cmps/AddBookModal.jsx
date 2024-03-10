@@ -1,10 +1,22 @@
 const { useState, useEffect } = React
 
-export function AddBookModal({onSubmit}){
-    const [modalInputsToUpdate, setModalInputsToUpdate] = useState(undefined)
+export function AddBookModal({onSubmit,setModalOpen}){
+    const [modalInputsToUpdate, setModalInputsToUpdate] = useState(
+        {
+            price: 0,
+            title: '',
+            subtitle: ''
+        }
+    )
     function onSubmitBook(ev){
         ev.preventDefault()
         onSubmit(modalInputsToUpdate)
+        setModalInputsToUpdate({
+            price: 0,
+            title: '',
+            subtitle: ''
+        })
+        setModalOpen()
     }
 
     function handleChange({target}) {
@@ -23,6 +35,7 @@ export function AddBookModal({onSubmit}){
                 type="text" 
                 name="title" 
                 id="title-add-book" 
+                value={modalInputsToUpdate.title}
                 onChange={handleChange}
                 placeholder="Enter book title"
             />        
@@ -31,6 +44,7 @@ export function AddBookModal({onSubmit}){
                 type="text" 
                 name="subtitle" 
                 id="subtitle-add-booke" 
+                value={modalInputsToUpdate.subtitle}
                 onChange={handleChange}
                 placeholder="Enter book subtitle"
             />        
@@ -39,6 +53,7 @@ export function AddBookModal({onSubmit}){
             type="number" 
             name="price" 
             id="price-add-book" 
+            value={modalInputsToUpdate.price}
             onChange={handleChange}
             placeholder="Enter book price"
             />

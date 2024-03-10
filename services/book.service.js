@@ -526,11 +526,29 @@ function addBook(newBook) {
     storageService.post(BOOK_KEY,newBook).then(console.log('done'))
 }
 
-// Private funcs
+function getEmptyBook() {
+  return {
+      title: '',
+      subtitle: '',
+      authors: ['Barbara Cartland'],
+      publishedDate: utilService.getRandomIntInclusive(1950,2024),
+      description: utilService.makeLorem(),
+      pageCount: utilService.getRandomIntInclusive(50,1000),
+      categories: [
+          'Computers',
+          'Hack'
+      ],
+      thumbnail: `./assets/img/${utilService.getRandomIntInclusive(1,20)}.jpg`,
+      language: "en",
+      listPrice: {
+          amount: 0,
+          currencyCode: "EUR",
+          isOnSale: false
+      }
+  }
+}
 
-// function _saveBooks(BOOK_KEY,books){
-    
-// }
+// Private funcs
 
 function _createBooks(){
     let books = utilService.loadFromStorage(BOOK_KEY)
@@ -546,54 +564,4 @@ function _createBooks(){
         utilService.saveToStorage(BOOK_KEY, books)
     }
 }
-
-// function _createBook(){
-//     const books = {
-        
-//     }
-    
-//     const book = getEmptyBook(title, price)
-//     book.id = utilService.makeId()
-//     book.description = description
-//     book.thumbnail = `./assets/img/${thumbnail}.jpg`
-//     return book
-    
-    
-// }
-
-function getEmptyBook() {
-    return {
-        title: '',
-        subtitle: '',
-        authors: ['Barbara Cartland'],
-        publishedDate: utilService.getRandomIntInclusive(1950,2024),
-        description: utilService.makeLorem(),
-        pageCount: utilService.getRandomIntInclusive(50,1000),
-        categories: [
-            'Computers',
-            'Hack'
-        ],
-        thumbnail: "http://ca.org/books-photos/20.jpg",
-        language: "en",
-        listPrice: {
-            amount: 0,
-            currencyCode: "EUR",
-            isOnSale: false
-        }
-    }
-}
-
-
-
-// function _createBook(title, subtitle, price, isOnSale = false, thumbnail = utilService.getRandomIntInclusive(1,20)) {
-//     const book = getEmptyBook()
-//     book.id = utilService.makeId()
-//     book.title = title
-//     book.subtitle = subtitle
-//     book.listPrice.amount = price
-//     book.listPrice.isOnSale = isOnSale
-//     if (description) book.description = description
-//     book.thumbnail = `./assets/img/${thumbnail}.jpg`
-//     return book
-// }
 
