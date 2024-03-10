@@ -1,0 +1,19 @@
+.book-list {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    /* gap: 10px 10px; */
+}
+
+.book-card{
+    display: grid;
+    border: 2px dotted var(--gray2);
+    padding: 3px 3px;
+    justify-items: center;
+    text-align: center;
+    align-content: space-between;
+}
+
+.book-card-text {
+    /* height: 20vh; */
+}
+
