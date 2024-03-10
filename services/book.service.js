@@ -20,15 +20,15 @@ export const bookService = {
 // For Debug obly
 window.bs = bookService
 
-function query(){
+function query(filterBy = getFilterBy()){
     return storageService.query(BOOK_KEY)
         .then(books => {
-            if (gFilterBy.txt) {
-                const regex = new RegExp(gFilterBy.txt, 'i')
+            if (filterBy.title) {
+                const regex = new RegExp(filterBy.title, 'i')
                 books = books.filter(book => regex.test(book.title))
             }
-            if (gFilterBy.price) {
-                books = books.filter(book => book.price >= gFilterBy.price)
+            if (filterBy.price) {
+                books = books.filter(book => book.price >= filterBy.price)
             }
             return books
         })
@@ -59,7 +59,7 @@ function getFilterBy() {
 }
 
 function setFilterBy (filterBy = {}) {
-    if (filterBy.title !== undefined) gFilterBy.title = filterBy
+    if (filterBy.title !== undefined) gFilterBy.title = filterBy.title
     if (filterBy.price !== undefined) gFilterBy.price
     return gFilterBy
 }
@@ -87,7 +87,7 @@ function _createBooks(){
     }
 }
 
-function _createBook(title = utilService.makeLorem(5), description = utilService.makeLorem(), thumbnail = utilService.getRandomIntInclusive(1,20), price = 100) {
+function _createBook(title = utilService.makeLorem(5), description = utilService.makeLorem(), thumbnail = utilService.getRandomIntInclusive(1,20), price = utilService.getRandomIntInclusive(50,200)) {
     const book = getEmptyBook(title, price)
     book.id = utilService.makeId()
     book.description = description

@@ -5,5 +5,6 @@ export function BookDetails({book,onGoBack}){
         <h5>Book Price: {book.price}</h5>
         <h2>Description:</h2>
         <p>{book.description}</p>
+        <img src={book.thumbnail}/>
     </section>
 }
