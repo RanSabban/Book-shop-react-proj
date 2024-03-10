@@ -2,7 +2,7 @@ import { utilService } from './util.service.js'
 import { storageService } from './async-storage.service.js'
 
 const BOOK_KEY = 'bookDB'
-var gFilterBy = {title: '', price: 0}
+var gFilterBy = {title: '', price: 0, page: 0}
 
 var gBooks = [
     {
@@ -473,7 +473,10 @@ function query(filterBy = getFilterBy()){
                 books = books.filter(book => regex.test(book.title))
             }
             if (filterBy.price) {
-                books = books.filter(book => book.price >= filterBy.price)
+                books = books.filter(book => book.listPrice.amount >= filterBy.price)
+            }
+            if (filterBy.page) {
+                books = books.filter(book => book.pageCount >= filterBy.page)
             }
             return books
         })

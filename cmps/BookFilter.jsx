@@ -35,10 +35,18 @@ export function BookFilter({onSetFilter,filterBy}){
             type="number" 
             name="price" 
             id="price" 
-            // value={filterByToUpdate.price}
             onChange={handleChange}
             placeholder="By price"
             />
+            <label htmlFor="page-count">Page Count</label>
+            <input 
+            type="number" 
+            name="page" 
+            id="page-count" 
+            onChange={handleChange}
+            placeholder="By pages"
+            />
+
         </form>
     </section>
 }
