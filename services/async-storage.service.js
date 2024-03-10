@@ -48,6 +48,29 @@ function remove(entityType, entityId) {
     })
 }
 
+
+function getEmptyBook() {
+    return {
+        title: '',
+        subtitle: '',
+        authors: ['Barbara Cartland'],
+        publishedDate: utilService.getRandomIntInclusive(1950,2024),
+        description: utilService.makeLorem(),
+        pageCount: utilService.getRandomIntInclusive(50,1000),
+        categories: [
+            'Computers',
+            'Hack'
+        ],
+        thumbnail: "http://ca.org/books-photos/20.jpg",
+        language: "en",
+        listPrice: {
+            amount: 0,
+            currencyCode: "EUR",
+        }
+    }
+}
+
+
 // Private functions
 
 function _save(entityType, entities) {

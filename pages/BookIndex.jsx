@@ -4,6 +4,7 @@ import { BookList } from "../cmps/BookList.jsx"
 import { bookService } from "../services/book.service.js"
 import { BookDetails } from "./BookDetails.jsx"
 import { BookFilter } from "../cmps/BookFilter.jsx"
+import { BookEdit } from "../cmps/BookEdit.jsx"
 
 
 export function BookIndex(){
@@ -22,6 +23,12 @@ export function BookIndex(){
             })
     }
 
+    function onAddBook(newBook){
+        bookService.addBook(newBook)
+        console.log('hello from button',newBook)
+
+    }
+
     function onSelectBook(book){
         onSelectedBook(book)
     }
@@ -37,6 +44,7 @@ export function BookIndex(){
             onSetFilter={onSetFilter}
             filterBy = {filterBy}
             />
+        <BookEdit addBook={onAddBook}/>
         <h1>Books List:</h1>
         <BookList books={books} 
         onSelectBook={onSelectBook}

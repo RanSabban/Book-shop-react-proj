@@ -457,7 +457,8 @@ export const bookService = {
     getEmptyBook,
     getNextBookId,
     getFilterBy,
-    setFilterBy
+    setFilterBy,
+    addBook
 }
 
 _createBooks()
@@ -498,10 +499,6 @@ function save(book) {
     }
 }
 
-function getEmptyBook(title = '', price = 0) {
-    return { id: '', title, price }
-}
-
 function getFilterBy() {
     return {...gFilterBy}
 }
@@ -514,14 +511,26 @@ function setFilterBy (filterBy = {}) {
 
 function getNextBookId(bookId) {
     return storageService.query(BOOK_KEY)
-        .then(books => {
-            var idx = books.findIndex(book => book.id === bookId)
-            if (idx === books.length -1) idx = -1
-            return books[idx+1].id
-        })
+    .then(books => {
+        var idx = books.findIndex(book => book.id === bookId)
+        if (idx === books.length -1) idx = -1
+        return books[idx+1].id
+    })
+}
+
+function addBook(newBook) {
+    newBook = {...newBook}
+    newBook = {...getEmptyBook(),...newBook}
+    const price = newBook.price
+    newBook.listPrice.amount = price
+    storageService.post(BOOK_KEY,newBook).then(console.log('done'))
 }
 
 // Private funcs
+
+// function _saveBooks(BOOK_KEY,books){
+    
+// }
 
 function _createBooks(){
     let books = utilService.loadFromStorage(BOOK_KEY)
@@ -538,11 +547,53 @@ function _createBooks(){
     }
 }
 
-function _createBook(title = utilService.makeLorem(5), description = utilService.makeLorem(), thumbnail = utilService.getRandomIntInclusive(1,20), price = utilService.getRandomIntInclusive(50,200)) {
-    const book = getEmptyBook(title, price)
-    book.id = utilService.makeId()
-    book.description = description
-    book.thumbnail = `./assets/img/${thumbnail}.jpg`
-    return book
+// function _createBook(){
+//     const books = {
+        
+//     }
+    
+//     const book = getEmptyBook(title, price)
+//     book.id = utilService.makeId()
+//     book.description = description
+//     book.thumbnail = `./assets/img/${thumbnail}.jpg`
+//     return book
+    
+    
+// }
+
+function getEmptyBook() {
+    return {
+        title: '',
+        subtitle: '',
+        authors: ['Barbara Cartland'],
+        publishedDate: utilService.getRandomIntInclusive(1950,2024),
+        description: utilService.makeLorem(),
+        pageCount: utilService.getRandomIntInclusive(50,1000),
+        categories: [
+            'Computers',
+            'Hack'
+        ],
+        thumbnail: "http://ca.org/books-photos/20.jpg",
+        language: "en",
+        listPrice: {
+            amount: 0,
+            currencyCode: "EUR",
+            isOnSale: false
+        }
+    }
 }
+
+
+
+// function _createBook(title, subtitle, price, isOnSale = false, thumbnail = utilService.getRandomIntInclusive(1,20)) {
+//     const book = getEmptyBook()
+//     book.id = utilService.makeId()
+//     book.title = title
+//     book.subtitle = subtitle
+//     book.listPrice.amount = price
+//     book.listPrice.isOnSale = isOnSale
+//     if (description) book.description = description
+//     book.thumbnail = `./assets/img/${thumbnail}.jpg`
+//     return book
+// }
 
