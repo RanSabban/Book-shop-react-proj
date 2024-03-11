@@ -458,7 +458,9 @@ export const bookService = {
     getNextBookId,
     getFilterBy,
     setFilterBy,
-    addBook
+    addBook,
+    getEmptyReview,
+    addReview
 }
 
 _createBooks()
@@ -545,6 +547,29 @@ function getEmptyBook() {
           currencyCode: "EUR",
           isOnSale: false
       }
+  }
+}
+
+function addReview(bookId,review){
+    review.id = utilService.makeId()
+    get(bookId)
+      .then((book) => {
+        if (!book.review) book.review = []
+        book.review.push(review)
+        return book
+      })
+      .then((book) => storageService.put(BOOK_KEY, book))
+      .then((book) => {
+        console.log('book added', book);
+      })
+}
+
+function getEmptyReview(){
+  return {
+    fullName:'',
+    freeText: '',
+    rate: 0,
+    readAt: ''
   }
 }
 

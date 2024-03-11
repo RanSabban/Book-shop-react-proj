@@ -4,6 +4,8 @@ const { Link } = ReactRouterDOM
 
 import { LongTxt } from "../cmps/LongTxt.jsx"
 import { bookService } from "../services/book.service.js"
+import { AddReview } from "../cmps/AddReview.jsx"
+import { RenderReviews } from "../cmps/RenderReviews.jsx"
 
 export function BookDetails(){
     const [book,setBook] = useState(null)
@@ -70,5 +72,7 @@ export function BookDetails(){
         <h3>Pages: {book.pageCount}<span> {getPageCount()}</span></h3>
         <h3>Published Date {book.publishedDate} <span>{getPublishDate()}</span></h3>
         <img src={book.thumbnail}/>
+        <RenderReviews reviews = {book.review} />
+        <AddReview setBook={setBook}/>
     </section>
 }
