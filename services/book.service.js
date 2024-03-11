@@ -551,17 +551,19 @@ function getEmptyBook() {
 }
 
 function addReview(bookId,review){
-    review.id = utilService.makeId()
-    get(bookId)
-      .then((book) => {
-        if (!book.review) book.review = []
-        book.review.push(review)
-        return book
-      })
-      .then((book) => storageService.put(BOOK_KEY, book))
-      .then((book) => {
-        console.log('book added', book);
-      })
+  review.id = utilService.makeId()
+  return get(bookId)
+    .then((book) => {
+      if (!book.review) book.review = []
+      book.review.push(review)
+      console.log(book);
+      return book
+    })
+    .then((book) => save(book))
+    .then((book) => {
+      console.log('book added', book);
+      return book
+    })
 }
 
 function getEmptyReview(){
@@ -577,7 +579,6 @@ function getEmptyReview(){
 
 function _createBooks(){
     let books = utilService.loadFromStorage(BOOK_KEY)
-    console.log(gBooks);
     if (!books || !books.length){
         // books = books.getBooks()
         // books.push(_createBook())

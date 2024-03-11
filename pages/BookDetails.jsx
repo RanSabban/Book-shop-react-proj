@@ -73,6 +73,6 @@ export function BookDetails(){
         <h3>Published Date {book.publishedDate} <span>{getPublishDate()}</span></h3>
         <img src={book.thumbnail}/>
         <RenderReviews reviews = {book.review} />
-        <AddReview setBook={setBook}/>
+        <AddReview />
     </section>
 }

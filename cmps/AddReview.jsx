@@ -4,7 +4,7 @@ const { useParams , useNavigate } = ReactRouter
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
 import { bookService } from "../services/book.service.js"
 
-export function AddReview({ setBook }) { 
+export function AddReview() { 
 
     const [reviewToUpdate,setReviewToUpdate] = useState(bookService.getEmptyReview())
 
@@ -20,9 +20,10 @@ export function AddReview({ setBook }) {
     function onSubmitBook(ev){
         ev.preventDefault()
         bookService.addReview(params.bookId,reviewToUpdate)
-            .then(() => {
+            .then((book) => {
+                console.log('book from add review',book);
                 showSuccessMsg('Review Added')
-                useNavigate('/books')
+                // navigator('/books')
             })
             .catch((err) => {
                 console.log('failed adding review',err);
