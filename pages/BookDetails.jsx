@@ -1,6 +1,35 @@
-import { LongTxt } from "../cmps/LongTxt.jsx"
+const {useEffect,useState} = React
+const { useParams, useNavigate } = ReactRouter
+const { Link } = ReactRouterDOM
 
-export function BookDetails({book,onGoBack}){
+import { LongTxt } from "../cmps/LongTxt.jsx"
+import { bookService } from "../services/book.service.js"
+
+export function BookDetails(){
+    const [book,setBook] = useState(null)
+    const [isLoading,setIsLoading] = useState(true)
+    const params = useParams()
+    const navigate = useNavigate()
+    
+    useEffect(() => {
+        loadBook()
+    },[params.bookId])
+
+    function loadBook(){
+        setIsLoading(true)
+        bookService.get(params.bookId)
+        .then(book => setBook(book))
+        .catch(err => {
+            console.log('error with load car details', err)
+            navigate('/books')
+        })
+        .finally(() => {
+            setIsLoading(false)
+        })
+        
+    }
+
+
     function getPageCount(){
         if (book.pageCount > 500) return 'Serious Reading'
         if (book.pageCount > 200) return 'Descent Reading'
@@ -26,8 +55,10 @@ export function BookDetails({book,onGoBack}){
             </div>
     }
 
+    if (isLoading) return <div>Loading..... brother.</div>
+
     return <section className="book-details">
-        <button onClick={onGoBack}>Back</button>
+        <Link to="/books"><button>Back</button></Link>
         <h1>Book Title: {book.title}</h1>
         <h3>{book.subtitle}</h3>
         <h5 className={getPriceClass()}>{book.listPrice.isOnSale ? getOnSale() : book.listPrice.amount+book.listPrice.currencyCode}</h5>
