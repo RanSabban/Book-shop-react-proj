@@ -12,6 +12,7 @@ export function RenderReviews({reviews}){
                         Full review: {review.freeText} <br />
                         Read at: {review.readAt} <br />
                         Rating: {review.rate}
+                        
                     </div>
                 </li> 
             })

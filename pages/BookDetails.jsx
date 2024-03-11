@@ -6,6 +6,7 @@ import { LongTxt } from "../cmps/LongTxt.jsx"
 import { bookService } from "../services/book.service.js"
 import { AddReview } from "../cmps/AddReview.jsx"
 import { RenderReviews } from "../cmps/RenderReviews.jsx"
+import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
 
 export function BookDetails(){
     const [book,setBook] = useState(null)
@@ -31,6 +32,20 @@ export function BookDetails(){
         
     }
 
+    function onRemoveReview(reviewId){
+        const review = book.review.filter(review => review.id !== reviewId)
+        book.review = review
+        bookService.save(book)
+            .then(book => {
+                showSuccessMsg('Review removed')
+                console.log('Review removed, new book:', book);
+                return book
+            })
+        .then((book) => {
+            setBook(book)
+            loadBook()
+        })
+    }
 
     function getPageCount(){
         if (book.pageCount > 500) return 'Serious Reading'
@@ -72,7 +87,31 @@ export function BookDetails(){
         <h3>Pages: {book.pageCount}<span> {getPageCount()}</span></h3>
         <h3>Published Date {book.publishedDate} <span>{getPublishDate()}</span></h3>
         <img src={book.thumbnail}/>
-        <RenderReviews reviews = {book.review} />
+        { (book.review) && <section className="render-reviews">
+            <h1>Reviews:</h1>
+            <ul className="clean-list">
+        {
+            book.review.map(review => {
+                return <li key={review.id} className="book-review-card">
+                    <div>
+                        Name: {review.fullName} <br />
+                        Full review: {review.freeText} <br />
+                        Read at: {review.readAt} <br />
+                        Rating: {review.rate}
+                        <button onClick={() => onRemoveReview(review.id)}>Delete</button>
+                    </div>
+                </li> 
+            })
+        }
+            </ul>
+        </section>
+       
+        }
+        {
+            (!book.review) && <section className="no-reviews">
+                <h1>No reviews yet</h1> 
+            </section>
+        }
         <AddReview setBook={setBook}/>
     </section>
 }

@@ -566,6 +566,23 @@ function addReview(bookId,review){
     })
 }
 
+// function removeReview(book,reviewId){
+//   // review.id = utilService.makeId()
+//   return get(bookId)
+//     .then((book) => {
+//       // if (!book.review) book.review = []
+//       book.review.push(review)
+//       console.log(book);
+//       return book
+//     })
+//     .then((book) => save(book))
+//     .then((book) => {
+//       console.log('book added', book);
+//       return book
+//     })
+
+// }
+
 function getEmptyReview(){
   return {
     fullName:'',
