@@ -1,18 +1,12 @@
-.book-filter{
+.book-edit form{
+    margin-top: 50px;
     display: grid;
     justify-content: center;
-    flex-direction: column;
     text-align: center;
+    row-gap: 1vh;
 }
 
-.book-filter form{
-    display: grid;
-    grid-auto-flow: column;
-    column-gap: 20px;
-    line-height: 6vh;
-}
-
-.book-filter form input{
+.book-edit form input{
     text-align: center;
     width: 25vw;
     outline: none;
@@ -27,6 +21,22 @@
     
 }
 
+#subtitle-add-booke{
+    padding-top: 1vh;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    padding-bottom: 20vh;
+    text-align: left;
+    height: auto;
+    align-self: start;
+}
+
+#price-add-book{
+    justify-self: center;
+    padding: 0;
+    width: 5vw;
+}
+
 .book-filter form input:focus{
     animation: scaleBreath;
     animation-duration: 0.5s;
@@ -39,27 +49,4 @@
 }
 .book-filter form label{
     font-size: 1.5em;
-}
-
-
-
-
-
-
-
-
-
-
-
-@keyframes scaleBreath {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.05);
-    }
-    100% {
-        transform: scale(1);
-    }
-   
 }

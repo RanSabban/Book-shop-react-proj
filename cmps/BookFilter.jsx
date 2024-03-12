@@ -36,7 +36,6 @@ export function BookFilter({onSetFilter,filterBy}){
             <label htmlFor="price">Price</label>
             <input 
             type="number" 
-            inputmode="numeric"
             name="price" 
             id="price" 
             onChange={handleChange}

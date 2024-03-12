@@ -6,6 +6,20 @@
     justify-self: center;
 }
 
-.book-index a button{
+.addbook-btn{
+    text-transform: uppercase;
+    color: var(--gray3);
+    font-size: 1em;
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 0.5em;
+    margin-top: 4vh;
+}
+
+.book-index a button img{
+    max-width: 2em;
+    
     
 }

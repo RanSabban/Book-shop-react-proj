@@ -23,9 +23,9 @@ export function BookIndex(){
     }
 
     function onRemoveBook(bookId) {
+        setBooks((prevBooks) => prevBooks.filter(book => book.id !== bookId))
         bookService.remove(bookId)
             .then(() => {
-                setBooks((prevBooks) => prevBooks.filter(book => book.id !== bookId))
                 showSuccessMsg('Book removed succesfully', bookId)
             })
             .catch(err => {
@@ -42,7 +42,7 @@ export function BookIndex(){
                 <BookFilter 
                 onSetFilter={onSetFilter}
                 filterBy = {filterBy}/>
-                <Link to="/books/edit"><button>Add Book</button></Link>
+                <Link to="/books/edit"><button className="addbook-btn">Add Book <img src={'./assets/img/book-logo.svg'}/></button></Link>
                 <BookList books={books}
                 onRemoveBook = {onRemoveBook}
                 />

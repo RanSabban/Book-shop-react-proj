@@ -8,15 +8,19 @@ import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
 export function BookEdit(){
     const [modalInputsToUpdate, setModalInputsToUpdate] = useState(bookService.getEmptyBook())
     const navigate = useNavigate()
+    const [isLoading,setIsLoading] = useState(false)
     const { bookId } = useParams()
-
     useEffect(() => {
-        if (bookId) loadBook()
+        if (bookId) {
+            loadBook()
+        setIsLoading(true)
+        }
     },[])
 
     function loadBook(){
         bookService.get(bookId)
             .then(book => setModalInputsToUpdate(book))
+            .then(() => setIsLoading(false))
             .catch(err => {
                 console.log('error finding book',err);
                 navigate('/books')
@@ -25,10 +29,10 @@ export function BookEdit(){
 
     function onSubmitBook(ev){
         ev.preventDefault()
+        navigate('/books')
         
         bookService.save(modalInputsToUpdate)
             .then(savedBook => {
-                navigate('/books')
                 console.log('book saved',savedBook)
                 showSuccessMsg('Book Saved', savedBook.id)
             })
@@ -48,8 +52,8 @@ export function BookEdit(){
         setModalInputsToUpdate((prevModalInputsToUpdate) => ({...prevModalInputsToUpdate, [field]: value}))
     }
     
-    console.log(modalInputsToUpdate);
-
+    // console.log(modalInputsToUpdate);
+    if (isLoading) return <div className="loader"><span>III</span></div>
     return <section className="book-edit">
             <form onSubmit={(ev) => onSubmitBook(ev)}>
                 <label htmlFor="title-add-booke">Book Title: </label>
