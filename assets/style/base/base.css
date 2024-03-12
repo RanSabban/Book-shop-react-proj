@@ -9,7 +9,12 @@ html {
 body {
   margin: 0;
   color: var(--gray3);
-  background: rgba(245, 245, 245, 0.792);
+  background: #FFF5DC;
+  background-image: url(../../img/web-bgc.svg);
+  background-size: 0.2%;
+  background-position-x: center;
+  /* background-repeat: no-repeat; */
+  
 }
 
 h1,
