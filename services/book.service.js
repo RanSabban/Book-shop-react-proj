@@ -544,7 +544,7 @@ function getEmptyBook() {
       language: "en",
       listPrice: {
           amount: 0,
-          currencyCode: "EUR",
+          currencyCode: "USD",
           isOnSale: false
       }
   }

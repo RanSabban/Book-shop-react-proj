@@ -29,12 +29,12 @@ export function BookEdit(){
 
     function onSubmitBook(ev){
         ev.preventDefault()
-        navigate('/books')
         
         bookService.save(modalInputsToUpdate)
             .then(savedBook => {
                 console.log('book saved',savedBook)
                 showSuccessMsg('Book Saved', savedBook.id)
+                navigate('/books')
             })
             .catch(err => {
                 console.log('error saving book', err)
