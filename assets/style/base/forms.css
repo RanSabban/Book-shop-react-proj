@@ -1,6 +1,6 @@
 button {
     cursor: pointer;
-    background-color: var(--clr2bg);
+    background-color: var( --clr1bg);
     margin: 0.5em;
     border: 0;
     padding: 0.5em 0.8em;
@@ -9,8 +9,9 @@ button {
 
 button:hover {
     background-color: var(--clr2);
-    color: white;
+    color: rgba(245, 245, 245, 0.775);
     transition: .3s;
+    scale: 1.1;
 }
 input:focus {
     background-color: var(--clr1bg);

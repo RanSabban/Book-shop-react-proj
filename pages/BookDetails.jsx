@@ -72,7 +72,7 @@ export function BookDetails(){
             </div>
     }
 
-    if (isLoading) return <div>Loading..... brother.</div>
+    if (isLoading) return <div className="loader"><span>III</span></div>
 
     return <section className="book-details">
         <Link to="/books"><button>Back</button></Link>

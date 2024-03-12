@@ -4,7 +4,7 @@ import { BookPreview } from "./BookPreview.jsx"
 
 export function BookList({books,onRemoveBook}){
 
-    if (!books) return <div>LOADING</div>
+    if (!books) return <div className="loader"><span>III</span></div>
     return <ul className="book-list clean-list">
         {
         books.map(book => 

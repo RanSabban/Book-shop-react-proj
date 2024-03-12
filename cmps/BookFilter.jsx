@@ -21,6 +21,7 @@ export function BookFilter({onSetFilter,filterBy}){
     return <section className="book-filter">
         <h2>Filter Books</h2>
         <form onSubmit={onFilter}>
+            <div className="input-container">
             <label htmlFor="title">Title</label>
             <input 
             type="text" 
@@ -30,14 +31,18 @@ export function BookFilter({onSetFilter,filterBy}){
             onChange={handleChange}
             placeholder="By title"
             />
+            </div>
+            <div className="input-container">
             <label htmlFor="price">Price</label>
             <input 
             type="number" 
+            inputmode="numeric"
             name="price" 
             id="price" 
             onChange={handleChange}
-            placeholder="By price"
-            />
+            placeholder="By price"/>
+            </div>
+            <div className="input-container">
             <label htmlFor="page-count">Page Count</label>
             <input 
             type="number" 
@@ -46,6 +51,7 @@ export function BookFilter({onSetFilter,filterBy}){
             onChange={handleChange}
             placeholder="By pages"
             />
+            </div>
 
         </form>
     </section>

@@ -2,7 +2,11 @@
   margin: 0 auto;
   padding-left: 1.6rem;
   padding-right: 1.6rem;
+  display: grid;
+  grid-template-columns: minmax(30px,auto) minmax(1fr,980px) minmax(30px,auto);
 }
+
+
 
 .container {
   padding: 1em;
