@@ -10,7 +10,36 @@
     text-decoration: line-through;
 }
 
-.on-sale-container img { 
-    display: inline;
-    width: 50px;
+.on-sale-container{
+    display: grid;
+    font-size: 0.8em;
+    text-align: center;
+}
+
+.on-sale-container .new-price {
+    font-size: 1.8rem;
+}
+
+.imgs-container{
+    display: grid;
+}
+
+.imgs-container .on-sale-img { 
+    width: 6em;
+    position: absolute;
+}
+
+.book-details{
+    display: grid;
+    justify-items: center;
+}
+
+.book-details-title{
+    font-size: 3em;
+    text-transform: capitalize;
+
+}
+
+.book-details .price {
+    font-size: 10em;
 }

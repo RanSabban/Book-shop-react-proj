@@ -43,6 +43,7 @@ export function BookIndex(){
                 onSetFilter={onSetFilter}
                 filterBy = {filterBy}/>
                 <Link to="/books/edit"><button className="addbook-btn">Add Book <img src={'./assets/img/book-logo.svg'}/></button></Link>
+                <Link to="/books/add"><button className="addbook-fromgoogle-btn">Add Book from google <img src={'./assets/img/book-logo.svg'}/></button></Link>
                 <BookList books={books}
                 onRemoveBook = {onRemoveBook}
                 />

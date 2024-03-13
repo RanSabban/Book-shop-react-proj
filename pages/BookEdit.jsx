@@ -65,7 +65,7 @@ export function BookEdit(){
                     onChange={handleChange}
                     placeholder="Enter book title"
                 />        
-                <label htmlFor="subtitle-add-book">Book Subtitle: </label>
+                {/* <label htmlFor="subtitle-add-book">Book Subtitle: </label>
                     <input 
                     type="text" 
                     name="subtitle" 
@@ -73,7 +73,7 @@ export function BookEdit(){
                     value={modalInputsToUpdate.subtitle}
                     onChange={handleChange}
                     placeholder="Enter book subtitle"
-                />        
+                />         */}
                 <label htmlFor="price-add-book">Price</label>
                 <input 
                 type="number" 

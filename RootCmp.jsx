@@ -11,6 +11,7 @@ import { BookDetails } from './pages/BookDetails.jsx'
 import { UserMsg } from './cmps/UserMsg.jsx'
 import { AboutTeam } from './cmps/AboutTeam.jsx'
 import { AboutVision } from './cmps/AboutVision.jsx'
+import { BookAdd } from './pages/BookAdd.jsx'
 
 
 export function App() {
@@ -32,6 +33,7 @@ export function App() {
             <Route path="/books/edit" element = {<BookEdit />}/>
             <Route path="/books/edit/:bookId" element = {<BookEdit />}/>
             <Route path="/books/:bookId" element = {<BookDetails />}/>
+            <Route path="/books/add" element = {<BookAdd />}/>
         </Routes>
         </main>
         <UserMsg />

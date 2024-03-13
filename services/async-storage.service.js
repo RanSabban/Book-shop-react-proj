@@ -4,9 +4,10 @@ export const storageService = {
     post,
     put,
     remove,
+    
 }
 
-function query(entityType, delay = 3000) {
+function query(entityType, delay = 1500) {
     var entities = JSON.parse(localStorage.getItem(entityType)) || []
     return new Promise(resolve => setTimeout(() => resolve(entities), delay))
 }
@@ -69,7 +70,6 @@ function getEmptyBook() {
         }
     }
 }
-
 
 // Private functions
 
