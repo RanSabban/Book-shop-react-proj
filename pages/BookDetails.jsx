@@ -54,8 +54,8 @@ export function BookDetails() {
     }
 
     function getPublishDate() {
-        if (book.publishedDate < 2014) return <span style={{color: 'brown'}}>- Vintage</span>
-        if (book.publishedDate > 2023) return  <span style={{color: 'green'}}>- New</span>
+        if (book.publishedDate < 2014) return <span style={{ color: 'brown' }}>- Vintage</span>
+        if (book.publishedDate > 2023) return <span style={{ color: 'green' }}>- New</span>
     }
 
     function getPriceClass() {
@@ -77,19 +77,21 @@ export function BookDetails() {
 
     return <section className="book-details">
         <Link to="/books"><button className="book-details-btn-back">Back</button></Link>
-        <h1 className="book-details-title">{book.title}</h1>
-        <p>{book.subtitle}</p>
-        <h2>Author/s: {book.authors.map(author => author + ' ')}</h2>
-        <h3>Published Date: {book.publishedDate} <span>{getPublishDate()}</span></h3>
-        <h3>Page Count: {book.pageCount}<span> - {getPageCount()}</span></h3>
-        <h3>Description:</h3>
-        <LongTxt txt={book.description}/>
-        <p>Book categories: {book.categories.map(category => category + ' ')}</p>
-        <p>LNG: {book.language}</p>
-        <div className={getPriceClass()}>{book.listPrice.isOnSale ? getOnSale() : book.listPrice.amount + book.listPrice.currencyCode}</div>
-        <div className="imgs-container">
-            {book.listPrice.isOnSale && <img className="on-sale-img" src={"./assets/img/onsale-sign.svg"} />}
-            <img src={book.thumbnail} />
+        <div className="book-details-info-container">
+            <h1 className="book-details-title">{book.title}</h1>
+            <p>{book.subtitle}</p>
+            <h2>Author/s: {book.authors.map(author => author + ' ')}</h2>
+            <h3>Published Date: {book.publishedDate} <span>{getPublishDate()}</span></h3>
+            <h3>Page Count: {book.pageCount}<span> - {getPageCount()}</span></h3>
+            <h3>Description:</h3>
+            <LongTxt txt={book.description} />
+            <p>Book categories: {book.categories.map(category => category + ' ')}</p>
+            <p>LNG: {book.language}</p>
+            <div className={getPriceClass()}>{book.listPrice.isOnSale ? getOnSale() : book.listPrice.amount + book.listPrice.currencyCode}</div>
+            <div className="imgs-container">
+                {book.listPrice.isOnSale && <img className="on-sale-img" src={"./assets/img/onsale-sign.svg"} />}
+                <img src={book.thumbnail} />
+            </div>
         </div>
 
         <div className="book-selector-prev-next">

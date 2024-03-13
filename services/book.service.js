@@ -591,7 +591,7 @@ function getEmptyReview(){
   return {
     fullName:'',
     freeText: '',
-    rate: 0,
+    rate: 1,
     readAt: ''
   }
 }
