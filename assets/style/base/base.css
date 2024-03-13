@@ -11,9 +11,10 @@ body {
   color: var(--gray3);
   background: #FFF5DC;
   background-image: url(../../img/web-bgc.svg);
-  background-size: 0.2%;
-  background-position-x: center;
-  /* background-repeat: no-repeat; */
+  background-size: 100%;
+  /* background */
+  /* background-position-x: center; */
+  background-repeat: no-repeat;
   
 }
 

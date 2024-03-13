@@ -101,7 +101,9 @@
     display: grid;
     justify-items: center;
     row-gap: 0.5vh;
-    border: 2px solid rgba(233, 110, 28, 0.791);
+    border: 2px solid rgba(233, 110, 28, 0.201);
+    color: var(--gray3);
+    background: #fff5dcdc;
 }
 
 .book-details-btn-back{
